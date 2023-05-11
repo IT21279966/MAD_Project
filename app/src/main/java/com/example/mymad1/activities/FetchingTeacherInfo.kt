@@ -7,10 +7,11 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.myapplication.activities.TeacherDetailsActivity
+import com.example.mymad1.R
+import com.example.mymad1.activities.TeacherDetailsActivity
 
-import com.example.myapplication.adapters.TeacherInfoAdapter
-import com.example.myapplication.models.TeacherModel
+import com.example.mymad1.adapters.TeacherInfoAdapter
+import com.example.mymad1.models.TeacherModel
 import com.google.firebase.database.*
 //import java.util.concurrent.locks.Condition
 

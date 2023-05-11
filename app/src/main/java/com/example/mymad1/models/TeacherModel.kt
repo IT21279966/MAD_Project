@@ -1,4 +1,4 @@
-package com.example.myapplication.models
+package com.example.mymad1.models
 
 data class TeacherModel (
     var teacherId : String? = null,

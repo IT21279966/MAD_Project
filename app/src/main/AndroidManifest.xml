@@ -48,6 +48,7 @@
         <activity android:name=".activities.TimetableDetailsActivity"/>
         <activity android:name=".activities.FetchingTeacherInfo"/>
         <activity android:name=".activities.TeacherDetailsActivity"/>
+        <activity android:name=".activities.HomeActivity"/>
 
         <!-- Shashika-->
         <activity android:name=".activities.InsertionActivity"/>
@@ -67,14 +68,11 @@
             android:name=".activities.PaymentDetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.PaymentFetchingActivity"
-            android:exported="false" />
-        <activity
             android:name=".activities.PaymentInsertionActivity"
             android:exported="false" />
         <activity
             android:name=".activities.EnterPaymentGatewayActivity"
-            android:exported="true">
+            android:exported="true"/>
 
 
     </application>

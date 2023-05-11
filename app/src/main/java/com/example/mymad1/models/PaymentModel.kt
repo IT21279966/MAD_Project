@@ -1,4 +1,4 @@
-package com.example.paymentlast
+package com.example.mymad1.models
 
 data class PaymentModel(
     var PaymentId:String? =null,

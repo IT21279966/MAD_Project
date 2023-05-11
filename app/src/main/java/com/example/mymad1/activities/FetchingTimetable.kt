@@ -1,4 +1,4 @@
-package com.example.myapplication.activities
+package com.example.mymad1.activities
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,9 +7,11 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.myapplication.R
-import com.example.myapplication.adapters.TimetableAdapter
-import com.example.myapplication.models.TimetableModel
+import com.example.mymad1.activities.TimetableDetailsActivity
+import com.example.mymad1.adapters.TimetableAdapter
+import com.example.mymad1.models.TimetableModel
+import com.example.mymad1.R
+
 import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
 

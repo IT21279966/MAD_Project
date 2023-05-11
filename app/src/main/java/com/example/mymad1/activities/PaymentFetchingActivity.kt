@@ -1,4 +1,4 @@
-package com.example.paymentlast
+package com.example.mymad1.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -7,6 +7,9 @@ import android.view.View
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.mymad1.PaymentAdapter
+import com.example.mymad1.R
+import com.example.mymad1.models.PaymentModel
 import com.google.firebase.database.*
 
 class PaymentFetchingActivity : AppCompatActivity() {

@@ -1,4 +1,4 @@
-package com.example.madproject1.activities
+package com.example.mymad1.activities
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,8 +8,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import com.example.madproject1.R
-import com.example.madproject1.models.EmployeeModel
+import com.example.mymad1.R
+import com.example.mymad1.models.EmployeeModel
 import com.google.firebase.database.FirebaseDatabase
 import javax.security.auth.Subject
 

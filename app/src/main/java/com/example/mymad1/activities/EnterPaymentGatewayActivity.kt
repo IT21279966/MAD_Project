@@ -1,9 +1,11 @@
-package com.example.paymentlast
+package com.example.mymad1.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import com.example.mymad1.R
+
 
 class EnterPaymentGatewayActivity : AppCompatActivity() {
 
@@ -12,7 +14,7 @@ class EnterPaymentGatewayActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_enter_payment_gateway)
 
         btnFetchingPayment = findViewById(R.id.btnFetchPayment)
         btnInsertionPayment = findViewById(R.id.btnInsertPayment)

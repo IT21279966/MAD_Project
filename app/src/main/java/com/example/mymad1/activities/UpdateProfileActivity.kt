@@ -17,14 +17,23 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 
 
+
+
+
+//This activity will not be used in the project as we are going to edit user inside the ViewProfileActivity
+
+// HABAI MEKA THIYANNA PODDAK... MONA MAGULAK WEIDA DANNE NANE... HEEEEE
+
+
+
+
+
+
 class UpdateProfileActivity:AppCompatActivity() {
 
     private lateinit var editProfileName: TextView
     private lateinit var editProfileEmail: TextView
     private lateinit var editProfileMobileNumber: TextView
-
-
-
 
     private lateinit var btnUpdateEditProfile: Button
 
@@ -36,16 +45,39 @@ class UpdateProfileActivity:AppCompatActivity() {
         editProfileEmail = findViewById(R.id.editStudentEmail)
         editProfileMobileNumber = findViewById(R.id.editStudentMobileNumber)
 
-        getStudentData()
-
         btnUpdateEditProfile = findViewById(R.id.btnUpdateEditProfile)
 
+        getStudentData()
+
+//        initView()
+        setValuesToViews()
+
         btnUpdateEditProfile.setOnClickListener {
-            val intent = Intent(this, ViewProfileActivity::class.java)  //change activity
-            startActivity(intent)
+//            val intent = Intent(this, ViewProfileActivity::class.java)  //change activity
+//            startActivity(intent)
+
+            openUpdateDialog(
+                intent.getStringExtra("userId").toString()
+//                intent.getStringExtra("profPhoneNo").toString()
+            )
         }
 
     }
+
+//    private fun initView() {
+//        editProfileName = findViewById(R.id.editStudentName)
+//        editProfileEmail = findViewById(R.id.editStudentEmail)
+//        editProfileMobileNumber = findViewById(R.id.editStudentMobileNumber)
+//
+//        btnUpdateEditProfile = findViewById(R.id.btnUpdateEditProfile)
+//    }
+
+    private fun setValuesToViews(){
+        editProfileName.text = intent.getStringExtra("profName")
+        editProfileEmail.text = intent.getStringExtra("profEmail")
+        editProfileMobileNumber.text = intent.getStringExtra("profPhoneNo")
+    }
+
 
     private fun getStudentData(){
         val userId = FirebaseAuth.getInstance().currentUser?.uid
@@ -65,15 +97,84 @@ class UpdateProfileActivity:AppCompatActivity() {
 
         })
     }
+
+    private fun openUpdateDialog(
+        userId: String
+//        profEmail: String,
+//        profPhoneNo: String
+    ){
+        val mDialog = AlertDialog.Builder(this)
+        val inflater = layoutInflater
+        val mDialogView = inflater.inflate(R.layout.activity_edit_profile, null)
+
+        mDialog.setView(mDialogView)
+
+        val etProfName = mDialogView.findViewById<EditText>(R.id.editStudentName)
+        val etProfEmail = mDialogView.findViewById<EditText>(R.id.editStudentEmail)
+        val etProfPhoneNo = mDialogView.findViewById<EditText>(R.id.editStudentMobileNumber)
+
+        val btnUpdate = mDialogView.findViewById<Button>(R.id.btnUpdateEditProfile)
+
+        etProfName.setText(intent.getStringExtra("profName").toString())
+        etProfEmail.setText(intent.getStringExtra("profEmail").toString())
+        etProfPhoneNo.setText(intent.getStringExtra("profPhoneNo").toString())
+
+        mDialog.setTitle("Updating $userId record!")
+
+        val alertDialog = mDialog.create()
+        alertDialog.show()
+
+        btnUpdate.setOnClickListener{
+            updateProfileData(
+                userId,
+                etProfName.text.toString(),
+                etProfEmail.text.toString(),
+                etProfPhoneNo.text.toString(),
+            )
+
+            Toast.makeText(applicationContext, "Profile Updated", Toast.LENGTH_LONG).show()
+
+            //set updated data to textviews
+            editProfileName.text = etProfName.text.toString()
+            editProfileEmail.text = etProfEmail.text.toString()
+            editProfileMobileNumber.text = etProfPhoneNo.text.toString()
+
+            alertDialog.dismiss()
+        }
+    }
+
+    private fun updateProfileData(
+        userId: String,
+        name: String,
+        email: String,
+        phoneNo: String,
+    ){
+        val dbRef = FirebaseDatabase.getInstance().getReference("students").child(userId)
+        val profInfo = Students(name, email, phoneNo, userId)
+        dbRef.setValue(profInfo)
+    }
+
+
+
+
+
+//    private fun UpdateStudentProfileData(){
+//        val userId = FirebaseAuth.getInstance().currentUser?.uid
+//        val userRef = FirebaseDatabase.getInstance().getReference("students/$userId")
+//        updateProfileName = findViewById<EditText>(R.id.editStudentName)
+//        updateProfileEmail = findViewById<EditText>(R.id.editStudentEmail)
+//        updateProfileMobileNumber = findViewById<EditText>(R.id.editStudentMobileNumber)
+//    }
+//}
 ///****************************************************************
 //    private fun updateStudentData(){
 //        val userId = FirebaseAuth.getInstance().currentUser?.uid
 //        val userRef = FirebaseDatabase.getInstance().getReference("students/$userId")
 //        val database = FirebaseDatabase.getInstance()
-//        updateProfileName = findViewById<EditText>(R.id.editStudentName)
-//        updateProfileEmail = findViewById<EditText>(R.id.editStudentEmail)
-//        updateProfileMobileNumber = findViewById<EditText>(R.id.editStudentMobileNumber)
-
+//        val updateProfileName = findViewById<EditText>(R.id.editStudentName)
+//        val updateProfileEmail = findViewById<EditText>(R.id.editStudentEmail)
+//        val updateProfileMobileNumber = findViewById<EditText>(R.id.editStudentMobileNumber)
+//
 //        updateProfileName.setOnEditorActionListener {_,actionId,_->
 //            if(actionId == EditorInfo.IME_ACTION_DONE){
 //                updateData(updateProfileName.text.toString(), database, userId)
@@ -93,7 +194,7 @@ class UpdateProfileActivity:AppCompatActivity() {
 //            }
 //
 //        }
-
+//
 //        updateProfileMobileNumber.setOnEditorActionListener {_,actionId,_->
 //            if(actionId == EditorInfo.IME_ACTION_DONE){
 //                updateData(updateProfileMobileNumber.text.toString(), database, userId)
@@ -103,10 +204,15 @@ class UpdateProfileActivity:AppCompatActivity() {
 //            }
 //
 //        }
-
- //   }
+//
+//    }
 
 //    private fun updateData(newData: String, database: FirebaseDatabase, uid: String?) {
+//
+//        val updateProfileName = findViewById<EditText>(R.id.editStudentName)
+//        val updateProfileEmail = findViewById<EditText>(R.id.editStudentEmail)
+//        val updateProfileMobileNumber = findViewById<EditText>(R.id.editStudentMobileNumber)
+//
 //        // Get a reference to the user's data in the database
 //        val userRef = database.getReference("students/$uid")
 //

@@ -1,10 +1,10 @@
-package com.example.madproject1.activities
+package com.example.mymad1.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-import com.example.madproject1.R
+import com.example.mymad1.R
 
 class ShashikaMainActivity : AppCompatActivity() {
 

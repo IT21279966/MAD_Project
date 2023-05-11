@@ -1,10 +1,12 @@
-package com.example.paymentlast
+package com.example.mymad1
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.mymad1.models.PaymentModel
+
 
 class PaymentAdapter(private val paymentList: ArrayList<PaymentModel>) :
     RecyclerView.Adapter<PaymentAdapter.ViewHolder>() {

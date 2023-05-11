@@ -5,8 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
-import com.example.myapplication.activities.TeacherDetailsActivity
-import com.example.myapplication.activities.TimetableSetup
+import com.example.mymad1.activities.TimetableSetup
+import com.example.mymad1.activities.TeacherDetailsActivity
 import com.example.mymad1.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot

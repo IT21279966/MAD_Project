@@ -14,19 +14,12 @@ import com.google.firebase.database.FirebaseDatabase
 class DeleteProfileActivity:AppCompatActivity() {
 
 
-    private lateinit var auth : FirebaseAuth
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.view_profile)
 
         showDeleteAlert()
 
-        auth = FirebaseAuth.getInstance()
-        if(auth.currentUser == null){
-            val intent = Intent(this, SignUpActivity::class.java)
-            startActivity(intent)
-        }
 
     }
 
@@ -60,11 +53,9 @@ class DeleteProfileActivity:AppCompatActivity() {
                         Toast.makeText(this, "Error deleting Profile", Toast.LENGTH_SHORT)
                     }
 
-                auth = FirebaseAuth.getInstance()
-                if(auth.currentUser == null){
-                    val intent = Intent(this, SignUpActivity::class.java)
-                    startActivity(intent)
-                }
+                val intent = Intent(this, SignUpActivity::class.java)
+                startActivity(intent)
+
 
             }
             .setNegativeButton("No") { dialog, which ->

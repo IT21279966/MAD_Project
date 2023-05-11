@@ -31,25 +31,63 @@ class CheckTeacherCode: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.teacher_confirmation_code)
 
-
-        //val userId = FirebaseAuth.getInstance()
-        //val userRef = FirebaseDatabase.getInstance().getReference("teachercode/code")
-
-        val codeRef = FirebaseDatabase.getInstance().getReference("teachercode")
-        //val editCode : EditText = findViewById(R.id.enterCode)
-
-
-
         btnCodeConfirm = findViewById(R.id.btn_code_confirm)
 
-        enterCode = findViewById<EditText>(R.id.enterCode)
-        //enterCode.toString()
-        val typeCode = enterCode.text.toString()
+        val codeRef = FirebaseDatabase.getInstance().reference.child("teachercode")
+        val enterCode = findViewById<EditText>(R.id.enterCode)
 
         btnCodeConfirm.setOnClickListener {
-            val intent = Intent(this, TeacherSignUpActivity::class.java)
-            startActivity(intent)
+            val typeCode = enterCode.text.toString()
 
+            codeRef.addValueEventListener(object: ValueEventListener{
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    for(snapshot in snapshot.children){
+                        val dbValue = snapshot.getValue(String::class.java)
+                        if(dbValue == typeCode){
+                            val intent = Intent(this@CheckTeacherCode, TeacherSignUpActivity::class.java)
+                            startActivity(intent)
+                            return
+                        }
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+
+                }
+            })
+        }
+    }}
+
+///////////////////////////////////////////////////////////////////
+//class CheckTeacherCode: AppCompatActivity() {
+//
+//    private lateinit var btnCodeConfirm: Button
+//
+//    private lateinit var enterCode :EditText
+//
+//    override fun onCreate(savedInstanceState: Bundle?) {
+//        super.onCreate(savedInstanceState)
+//        setContentView(R.layout.teacher_confirmation_code)
+//
+//
+//        //val userId = FirebaseAuth.getInstance()
+//        //val userRef = FirebaseDatabase.getInstance().getReference("teachercode/code")
+//
+//        val codeRef = FirebaseDatabase.getInstance().getReference("teachercode")
+//        //val editCode : EditText = findViewById(R.id.enterCode)
+//
+//
+//
+//        btnCodeConfirm = findViewById(R.id.btn_code_confirm)
+//
+//        enterCode = findViewById<EditText>(R.id.enterCode)
+//        //enterCode.toString()
+//        val typeCode = enterCode.text.toString()
+//
+//        btnCodeConfirm.setOnClickListener {
+//            val intent = Intent(this, TeacherSignUpActivity::class.java)
+//            startActivity(intent)
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
 //            val code = enterCode.text.toString().trim()
 //            val isCode = codeRef.orderByChild("code").equalTo(code)
 
@@ -84,8 +122,8 @@ class CheckTeacherCode: AppCompatActivity() {
 //                startActivity(intent)
 //            }
 
-        }
-    }}
+//        }
+//    }}
 
 
 

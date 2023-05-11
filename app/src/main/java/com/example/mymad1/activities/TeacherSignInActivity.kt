@@ -33,7 +33,7 @@ class TeacherSignInActivity : AppCompatActivity() {
         val signUpText : TextView = findViewById(R.id.signUpTextStd)
 
         signUpText.setOnClickListener{
-            val intent = Intent(this, SignUpActivity::class.java)
+            val intent = Intent(this, TeacherSignUpActivity::class.java)
             startActivity(intent)
         }
 
@@ -70,7 +70,7 @@ class TeacherSignInActivity : AppCompatActivity() {
             }else{
                 auth.signInWithEmailAndPassword(stdEmail, stdPassword).addOnCompleteListener{
                     if(it.isSuccessful){
-                        val intent = Intent(this, TeacherViewProfileActivity::class.java)
+                        val intent = Intent(this, HomeActivity::class.java)
                         startActivity(intent)
                     }else{
                         Toast.makeText(this, "Something went wrong, please try again!", Toast.LENGTH_SHORT).show()

@@ -19,4 +19,7 @@
 
     //Thejani
     <color name="divider_blue">#9BD7F3</color>
+
+    //Shashika
+    <color name="divider_grey">#D3D3D3</color>
 </resources>

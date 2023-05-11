@@ -1,10 +1,10 @@
-package com.example.myapplication.activities
+package com.example.mymad1.activities
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import com.example.myapplication.R
+import com.example.mymad1.R
 
 class TimetableSetup : AppCompatActivity() {
     private lateinit var btnInsertData: Button

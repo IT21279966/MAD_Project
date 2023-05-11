@@ -1,10 +1,12 @@
-package com.example.paymentlast
+package com.example.mymad1.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import com.example.mymad1.R
+import com.example.mymad1.models.PaymentModel
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 

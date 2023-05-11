@@ -1,11 +1,11 @@
-package com.example.myapplication.adapters
+package com.example.mymad1.adapters
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.myapplication.models.TeacherModel
+import com.example.mymad1.models.TeacherModel
 import com.example.mymad1.R
 
 class TeacherInfoAdapter(private val teacherList : ArrayList<TeacherModel>) : RecyclerView.Adapter<TeacherInfoAdapter.ViewHolder>(){

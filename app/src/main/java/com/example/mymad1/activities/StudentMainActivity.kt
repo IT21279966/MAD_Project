@@ -1,11 +1,11 @@
-package com.example.madproject1.activities
+package com.example.mymad1.activities
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat.startActivity
-import com.example.madproject1.R
+import com.example.mymad1.R
 
 class StudentMainActivity:AppCompatActivity() {
 

@@ -1,4 +1,4 @@
-package com.example.madproject1.activities
+package com.example.mymad1.activities
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,9 +7,9 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.madproject1.models.EmployeeModel
-import com.example.madproject1.R
-import com.example.madproject1.adapters.EmpAdapter
+import com.example.mymad1.models.EmployeeModel
+import com.example.mymad1.R
+import com.example.mymad1.adapters.EmpAdapter
 import com.google.firebase.database.*
 
 class FetchingActivity : AppCompatActivity() {
