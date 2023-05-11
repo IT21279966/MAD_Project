@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">myMad1</string>
+
+    <string name="labelTimetable">Timetable</string>
+    <string name="labelMaths">Combined Maths</string>
+    <string name="labelBio">Biology</string>
+    <string name="labelChemistry">Chemistry</string>
+    <string name="labelPhysics">Physics</string>
+
+</resources>
