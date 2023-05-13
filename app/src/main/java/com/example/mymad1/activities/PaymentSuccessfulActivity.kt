@@ -19,7 +19,7 @@ class PaymentSuccessfulActivity : AppCompatActivity() {
         btnPaymentHome = findViewById(R.id.btnHome)
 
         btnPaymentHome.setOnClickListener {
-            val intent = Intent(this, EnterPaymentGatewayActivity::class.java)
+            val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
         }
 

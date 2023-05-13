@@ -342,7 +342,9 @@
         android:gravity="center_vertical"
         android:text="Enrol"
         android:textAlignment="center"
+        android:textColor="#ffffff"
         android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

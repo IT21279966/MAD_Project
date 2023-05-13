@@ -55,8 +55,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
-        android:backgroundTint="@color/black"
-        android:text="Update Payment Data" />
+        android:backgroundTint="#2196F3"
+        android:text="Update Payment Data"
+        android:textColor="#ffffff"
+        android:textStyle="bold" />
 
 
 </LinearLayout>

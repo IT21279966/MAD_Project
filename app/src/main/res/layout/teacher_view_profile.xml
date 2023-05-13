@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#f5f5f5"
-    tools:context=".activities.ViewProfileActivity">
+    tools:context=".activities.TeacherViewProfileActivity">
 
 
     <ImageView
@@ -18,7 +18,7 @@
         app:srcCompat="@drawable/top_bcakground" />
 
     <TextView
-        android:id="@+id/viewProfileHeaderName"
+        android:id="@+id/viewTProfileHeaderName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="3dp"
@@ -32,7 +32,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView4" />
 
     <TextView
-        android:id="@+id/viewProfileHeaderEmail"
+        android:id="@+id/viewTProfileHeaderEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -41,14 +41,14 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/viewProfileHeaderName" />
+        app:layout_constraintTop_toBottomOf="@+id/viewTProfileHeaderName" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="260dp"
+        android:layout_marginTop="280dp"
         android:layout_marginEnd="24dp"
         android:background="@drawable/background_white"
         android:elevation="10dp"
@@ -58,8 +58,8 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
-            android:layout_width="343dp"
-            android:layout_height="145dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="10dp"
@@ -76,9 +76,9 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:id="@+id/imageView8"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:id="@+id/ivHome"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
                     android:layout_gravity="center"
                     android:layout_margin="10dp"
                     app:srcCompat="@drawable/home_icon" />
@@ -105,9 +105,9 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:id="@+id/imageView9"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:id="@+id/ivTimetable"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
                     android:layout_gravity="center"
                     android:layout_margin="10dp"
                     app:srcCompat="@drawable/timetable_icon" />
@@ -134,9 +134,9 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:id="@+id/imageView1"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:id="@+id/ivResults"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
                     android:layout_gravity="center"
                     android:layout_margin="10dp"
                     app:srcCompat="@drawable/results_icon" />
@@ -156,7 +156,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="10dp"
@@ -174,7 +174,7 @@
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/viewProfileName"
+                android:id="@+id/viewTProfileName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -195,7 +195,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="10dp"
@@ -213,7 +213,7 @@
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/viewProfileEmail"
+                android:id="@+id/viewTProfileEmail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -234,7 +234,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="10dp"
@@ -252,7 +252,7 @@
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/viewProfileMobileNumber"
+                android:id="@+id/viewTProfileMobileNumber"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -263,13 +263,10 @@
 
         </LinearLayout>
 
-
-
-
     </LinearLayout>
 
     <Button
-        android:id="@+id/btnUpdateProfile"
+        android:id="@+id/btnTUpdateProfile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -286,7 +283,7 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
     <Button
-        android:id="@+id/btnDeleteProfile"
+        android:id="@+id/btnTDeleteProfile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"

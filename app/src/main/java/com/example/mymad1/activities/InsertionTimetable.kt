@@ -1,5 +1,7 @@
 package com.example.mymad1.activities
 
+import android.app.DatePickerDialog
+import android.app.TimePickerDialog
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -9,6 +11,7 @@ import com.example.mymad1.models.TimetableModel
 import com.example.mymad1.R
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import java.util.*
 
 class InsertionTimetable : AppCompatActivity() {
     //variable initialization
@@ -31,6 +34,15 @@ class InsertionTimetable : AppCompatActivity() {
         etTime = findViewById(R.id.addTime)
         etLink = findViewById(R.id.addLink)
         btnSaveTimetable = findViewById(R.id.btnSaveTimetable)
+
+        etDate.setOnClickListener {
+            showDatePicker()
+        }
+
+        etTime.setOnClickListener {
+            showTimePicker()
+        }
+
 
         dbRef = FirebaseDatabase.getInstance().getReference("Timetable")
 
@@ -85,4 +97,48 @@ class InsertionTimetable : AppCompatActivity() {
                 Toast.makeText(this, "Error ${err.message}", Toast.LENGTH_LONG).show()
             }
     }
+
+
+    private fun showDatePicker() {
+        val currentDate = Calendar.getInstance()
+        val year = currentDate.get(Calendar.YEAR)
+        val month = currentDate.get(Calendar.MONTH)
+        val day = currentDate.get(Calendar.DAY_OF_MONTH)
+
+        val datePicker = DatePickerDialog(
+            this,
+            DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
+                // Update the EditText field with the selected date
+                etDate.setText("$year-${month+1}-$dayOfMonth")
+            },
+            year,
+            month,
+            day
+        )
+
+        // Show the date picker
+        datePicker.show()
+    }
+
+    private fun showTimePicker() {
+        val currentTime = Calendar.getInstance()
+        val hour = currentTime.get(Calendar.HOUR_OF_DAY)
+        val minute = currentTime.get(Calendar.MINUTE)
+
+        val timePicker = TimePickerDialog(
+            this,
+            TimePickerDialog.OnTimeSetListener { _, hourOfDay, minute ->
+                // Update the EditText field with the selected time
+                etTime.setText("$hourOfDay:$minute")
+            },
+            hour,
+            minute,
+            true
+        )
+
+        // Show the time picker
+        timePicker.show()
+    }
+
+
 }

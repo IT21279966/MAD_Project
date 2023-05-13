@@ -46,6 +46,8 @@ class PaymentDetailsActivity : AppCompatActivity() {
             deleteRecord(
                 intent.getStringExtra("PaymentId").toString()
             )
+            val intent = Intent(this, EnterPaymentGatewayActivity::class.java)
+            startActivity(intent)
         }
 
         btnPaymentDone = findViewById(R.id.btnDone)
@@ -88,9 +90,9 @@ class PaymentDetailsActivity : AppCompatActivity() {
         mTask.addOnSuccessListener {
             Toast.makeText(this, "Payment data deleted", Toast.LENGTH_LONG).show()
 
-            val intent = Intent(this, PaymentFetchingActivity::class.java)
+            //val intent = Intent(this, PaymentFetchingActivity::class.java)
             finish()
-            startActivity(intent)
+            //startActivity(intent)
         }.addOnFailureListener{ error ->
             Toast.makeText(this, "Deleting Err ${error.message}", Toast.LENGTH_LONG).show()
         }

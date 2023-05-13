@@ -24,6 +24,7 @@ import com.google.firebase.ktx.Firebase
 class CheckTeacherCode: AppCompatActivity() {
 
     private lateinit var btnCodeConfirm: Button
+    private lateinit var btnCodeExit: Button
 
     private lateinit var enterCode :EditText
 
@@ -32,6 +33,7 @@ class CheckTeacherCode: AppCompatActivity() {
         setContentView(R.layout.teacher_confirmation_code)
 
         btnCodeConfirm = findViewById(R.id.btn_code_confirm)
+        btnCodeExit = findViewById(R.id.btn_code_confirm_exit)
 
         val codeRef = FirebaseDatabase.getInstance().reference.child("teachercode")
         val enterCode = findViewById<EditText>(R.id.enterCode)
@@ -44,9 +46,12 @@ class CheckTeacherCode: AppCompatActivity() {
                     for(snapshot in snapshot.children){
                         val dbValue = snapshot.getValue(String::class.java)
                         if(dbValue == typeCode){
-                            val intent = Intent(this@CheckTeacherCode, TeacherSignUpActivity::class.java)
+                            val intent = Intent(this@CheckTeacherCode, TeacherSignInActivity::class.java)
                             startActivity(intent)
+
                             return
+                        }else{
+                            Toast.makeText(this@CheckTeacherCode, "Invalid Teacher Code. try again!", Toast.LENGTH_SHORT).show()
                         }
                     }
                 }
@@ -55,6 +60,11 @@ class CheckTeacherCode: AppCompatActivity() {
 
                 }
             })
+        }
+
+        btnCodeExit.setOnClickListener{
+            val intent = Intent(this, TeacherStudentLogin::class.java)
+            startActivity(intent)
         }
     }}
 

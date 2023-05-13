@@ -43,7 +43,9 @@
             android:backgroundTint="#082F58"
             android:fontFamily="sans-serif"
             android:text="@string/labelMaths"
-            android:textSize="24sp" />
+            android:textColor="#ffffff"
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 
@@ -71,7 +73,9 @@
             android:backgroundTint="#082F58"
             android:fontFamily="sans-serif"
             android:text="@string/labelBio"
-            android:textSize="24sp" />
+            android:textColor="#ffffff"
+            android:textSize="24sp"
+            android:textStyle="bold" />
     </LinearLayout>
 
     <LinearLayout
@@ -98,7 +102,9 @@
             android:backgroundTint="#082F58"
             android:fontFamily="sans-serif"
             android:text="@string/labelChemistry"
-            android:textSize="24sp" />
+            android:textColor="#ffffff"
+            android:textSize="24sp"
+            android:textStyle="bold" />
     </LinearLayout>
 
     <LinearLayout
@@ -125,7 +131,9 @@
             android:backgroundTint="#082F58"
             android:fontFamily="sans-serif"
             android:text="@string/labelPhysics"
-            android:textSize="24sp" />
+            android:textColor="#ffffff"
+            android:textSize="24sp"
+            android:textStyle="bold" />
     </LinearLayout>
 
     <LinearLayout

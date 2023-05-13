@@ -4,10 +4,7 @@ import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mymad1.R
@@ -39,10 +36,34 @@ class ViewProfileActivity: AppCompatActivity() {
         viewProfileHeaderEmail = findViewById(R.id.viewProfileHeaderEmail)
         viewProfileHeaderName = findViewById(R.id.viewProfileHeaderName)
 
+        //Assign btn IDs to variables
         btnUpdateProfile = findViewById(R.id.btnUpdateProfile)
         btnDeleteProfile = findViewById(R.id.btnDeleteProfile)
 
+        //ImageViews as buttons
+        val homeIcon = findViewById<ImageView>(R.id.ivHome)
+        val timetableIcon = findViewById<ImageView>(R.id.ivTimetable)
+        val resultsIcon = findViewById<ImageView>(R.id.ivResults)
+
         getStudentData()
+
+
+        //Onclick listners for image views
+        homeIcon.setOnClickListener {
+            val intent = Intent(this, HomeActivity::class.java)  //change activity
+            startActivity(intent)
+        }
+
+        timetableIcon.setOnClickListener{
+            val intent = Intent(this, TeacherDetailsActivity::class.java)  //change activity
+            startActivity(intent)
+        }
+
+        resultsIcon.setOnClickListener {
+            val intent = Intent(this, ShashikaMainActivity::class.java)  //change activity
+            startActivity(intent)
+        }
+
 
         btnUpdateProfile.setOnClickListener {
 //            val intent = Intent(this, UpdateProfileActivity::class.java)  //change activity

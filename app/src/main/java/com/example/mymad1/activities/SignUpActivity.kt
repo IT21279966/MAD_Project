@@ -1,6 +1,13 @@
 package com.example.mymad1.activities
 
+import android.Manifest
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -9,6 +16,9 @@ import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import com.example.mymad1.R
 import com.example.mymad1.databinding.ActivitySignUpBinding
 import com.example.mymad1.models.Students
@@ -16,12 +26,19 @@ import com.google.android.material.textfield.TextInputLayout
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import java.text.SimpleDateFormat
+import java.util.*
 
 class SignUpActivity : AppCompatActivity() {
 
     private lateinit var auth : FirebaseAuth
     private lateinit var database: FirebaseDatabase
-    private val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
+   //private val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
+    private val emailPattern = "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z]+\$"
+    private val phonePattern = "^\\d{10}$"
+
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -87,12 +104,12 @@ class SignUpActivity : AppCompatActivity() {
                 Toast.makeText(this, "Enter valid details", Toast.LENGTH_SHORT).show()
                 signUpStdProgressbar.visibility = View.GONE
 
-            }else if(!stdEmail.matches(emailPattern.toRegex())){
+            }else if(!stdEmail.matches(emailPattern.toRegex(RegexOption.IGNORE_CASE))){
                 signUpStdProgressbar.visibility = View.GONE
                 signUpStdEmail.error = "Enter valid email address"
                 Toast.makeText(this, "Enter valid email address", Toast.LENGTH_SHORT).show()
 
-            }else if(stdPhone.length != 10){
+            }else if(stdPhone.length != 10 || !stdPhone.matches(phonePattern.toRegex())){
                 signUpStdProgressbar.visibility = View.GONE
                 signUpStdPhone.error = "Enter valid mobile number"
                 Toast.makeText(this, "Enter valid mobile number", Toast.LENGTH_SHORT).show()
@@ -119,6 +136,9 @@ class SignUpActivity : AppCompatActivity() {
                             if(it.isSuccessful){
                                 val intent = Intent(this, SignInActivity::class.java)
                                 startActivity(intent)
+
+                                //Display Notification
+                                showSignUpNotification()
                             }else{
                                 Toast.makeText(this, "Something went wrong, try again", Toast.LENGTH_SHORT).show()
                             }
@@ -134,4 +154,53 @@ class SignUpActivity : AppCompatActivity() {
 
 
     }
+
+
+    //Function to display notification
+  private fun showSignUpNotification(){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val name = "My Notification Channel"
+            val descriptionText = "Channel description"
+            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val channel = NotificationChannel("my_channel_id", name, importance).apply {
+                description = descriptionText
+            }
+            // register the notification channel with the system
+            val notificationManager: NotificationManager =
+                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(channel)
+        }
+
+        // create a notification
+        val notification = NotificationCompat.Builder(this, "my_channel_id")
+            .setSmallIcon(R.drawable.sign_up_notificaion_icon)
+            .setContentTitle("Welcome to Web-Brain !")
+            .setContentText("You are a member of Web-Brain now")
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .build()
+
+        // create an intent for the notification
+        val intent = Intent(this, SignInActivity::class.java)
+        val pendingIntent = PendingIntent.getActivity(this, 0, intent, 0)
+
+        // add the intent to the notification
+        notification.contentIntent = pendingIntent
+
+        // show the notification
+        val notificationManager = NotificationManagerCompat.from(this)
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.POST_NOTIFICATIONS
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+
+            return
+        }
+        notificationManager.notify(1, notification)
+  }
+
+
+
 }

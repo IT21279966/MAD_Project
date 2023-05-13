@@ -7,7 +7,6 @@ import android.view.View
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mymad1.PaymentAdapter
 import com.example.mymad1.R
 import com.example.mymad1.models.PaymentModel
 import com.google.firebase.database.*
@@ -42,8 +41,8 @@ class PaymentFetchingActivity : AppCompatActivity() {
                 paymentList.clear()
                 if (snapshot.exists()){
                     for (PaymentSnap in snapshot.children){
-                        val PaymentsData = PaymentSnap.getValue(PaymentModel::class.java)
-                        paymentList.add(PaymentsData!!)
+                        val paymentsData = PaymentSnap.getValue(PaymentModel::class.java)
+                        paymentList.add(paymentsData!!)
                     }
                     val mAdapter = PaymentAdapter(paymentList)
                     paymentRecyclerView.adapter = mAdapter

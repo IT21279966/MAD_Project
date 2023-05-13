@@ -152,6 +152,8 @@
         android:backgroundTint="#082F58"
         android:fontFamily="sans-serif"
         android:text="Save Timetable"
-        android:textSize="24sp" />
+        android:textColor="#ffffff"
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
 </LinearLayout>

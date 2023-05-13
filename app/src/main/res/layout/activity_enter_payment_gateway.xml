@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EnterPaymentGatewayActivity">
+    tools:context=".activities.EnterPaymentGatewayActivity">
 
     <TextView
         android:id="@+id/textViewPayment"
@@ -24,25 +24,31 @@
         android:id="@+id/btnInsertPayment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="insert Data"
         android:layout_marginLeft="20dp"
+        android:layout_marginTop="200dp"
         android:layout_marginRight="20dp"
         android:backgroundTint="#2196F3"
-        android:layout_marginTop="75dp"
+        android:text="Enter Your Payment Details"
+        android:textColor="#ffffff"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewPayment" />
 
-    <Button
-        android:id="@+id/btnFetchPayment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Fetch Data"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginRight="20dp"
-        android:backgroundTint="#2196F3"
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="107dp"
+        android:layout_height="101dp"
+        android:layout_marginStart="173dp"
+        android:layout_marginEnd="173dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.785"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnInsertPayment" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.269"
+        app:srcCompat="@drawable/cardpaymententerimg" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
