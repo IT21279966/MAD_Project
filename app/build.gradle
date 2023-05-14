@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.mymad1"
-        minSdk 26
+        minSdk 22
         targetSdk 33
         versionCode 1
         versionName "1.0"
@@ -51,4 +51,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth-ktx:22.0.0'
     implementation platform('com.google.firebase:firebase-bom:32.0.0')
     implementation 'com.google.firebase:firebase-database-ktx:20.2.1'
+
+
+
+
 }

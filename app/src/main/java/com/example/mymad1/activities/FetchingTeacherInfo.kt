@@ -86,9 +86,9 @@ class FetchingTeacherInfo : AppCompatActivity(){
 
 //put extras
                             intent.putExtra("uid", teacherList[position].uid)
-                            intent.putExtra("name", teacherList[position].Name)
-                            intent.putExtra("subject", teacherList[position].Subject)
-                            intent.putExtra("fee", teacherList[position].Fee)
+                            intent.putExtra("name", teacherList[position].name)
+                            intent.putExtra("subject", teacherList[position].subject)
+                            intent.putExtra("fee", teacherList[position].fee)
 
                             startActivity(intent)
                         }

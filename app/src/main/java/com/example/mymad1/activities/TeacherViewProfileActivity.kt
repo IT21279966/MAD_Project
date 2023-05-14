@@ -1,7 +1,9 @@
 package com.example.mymad1.activities
 
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -75,14 +77,10 @@ class TeacherViewProfileActivity: AppCompatActivity() {
             val userId = FirebaseAuth.getInstance().currentUser?.uid
             val userRef = FirebaseDatabase.getInstance().getReference("teachers/$userId")
 
-//            openUpdateDialog(
-//                intent.getStringExtra("userId").toString()
-//            )
-
             userRef.addValueEventListener(object : ValueEventListener{
                 override fun onDataChange(snapshot: DataSnapshot) {
                     val teacher = snapshot.getValue(Teachers::class.java)
-                    openUpdateDialog(teacher?.uid.toString(), teacher?.Name.toString(), teacher?.Email.toString(), teacher?.Phone.toString())
+                    openUpdateDialog(teacher?.uid.toString(), teacher?.name.toString(), teacher?.email.toString(), teacher?.phone.toString())
                 }
 
                 override fun onCancelled(error: DatabaseError) {
@@ -100,20 +98,21 @@ class TeacherViewProfileActivity: AppCompatActivity() {
     }
 
     private fun getTeacherData(){
-        val tId = FirebaseAuth.getInstance().currentUser?.uid
-        val tRef = FirebaseDatabase.getInstance().getReference("teachers/$tId")
+        val userId = FirebaseAuth.getInstance().currentUser?.uid
+        Log.w("Failed to catch user$userId","$userId")
+        val tRef = FirebaseDatabase.getInstance().getReference("teachers/$userId")
 
         tRef.addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 val teacher = snapshot.getValue(Teachers::class.java)
-                viewTProfileName.text = teacher?.Name
-                viewTProfileEmail.text = teacher?.Email
-                viewTProfileMobileNumber.text = teacher?.Phone
-                viewTProfileHeaderName.text = teacher?.Name
-                viewTProfileHeaderEmail.text = teacher?.Email
+                viewTProfileName.text = teacher?.name
+                viewTProfileEmail.text = teacher?.email
+                viewTProfileMobileNumber.text = teacher?.phone
+                viewTProfileHeaderName.text = teacher?.name
+                viewTProfileHeaderEmail.text = teacher?.email
             }
             override fun onCancelled(error: DatabaseError) {
-//                Log.w(TAG, "Failed to read user data.", error.toException())
+                Log.w(TAG, "Failed to read user data.", error.toException())
             }
 
         })

@@ -15,36 +15,20 @@ import javax.security.auth.Subject
 
 class StudentEmployeeDetailsActivity : AppCompatActivity(){
 
+    //Assign text views to variables
     private lateinit var tvStdId: TextView
     private lateinit var tvStdName: TextView
     private lateinit var tvStdSubject: TextView
     private lateinit var tvStdMarks: TextView
-//    private lateinit var btnUpdate: Button
-//    private lateinit var btnDelete: Button
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_employee_student_details)
 
+        //Call functions
         initView()
         setValuesToViews()
-
-//        //Update Btn
-//        btnUpdate.setOnClickListener {
-//            openUpdateDialog(
-//                intent.getStringExtra("stdId").toString(),
-//                intent.getStringExtra("stdName").toString()
-//            )
-//        }
-
-
-//        //Delete btn
-//        btnDelete.setOnClickListener{
-//            deleteRecord(
-//                intent.getStringExtra("stdId").toString()    //get unique ID
-//            )
-//        }
 
     }
 
@@ -76,11 +60,10 @@ class StudentEmployeeDetailsActivity : AppCompatActivity(){
         tvStdSubject = findViewById(R.id.tvStdSubject)
         tvStdMarks = findViewById(R.id.tvStdMarks)
 
-//        btnUpdate = findViewById(R.id.btnUpdate)
-//        btnDelete = findViewById(R.id.btnDelete)
     }
 
     private fun setValuesToViews() {
+
         tvStdId.text = intent.getStringExtra("stdId")
         tvStdName.text = intent.getStringExtra("stdName")
         tvStdSubject.text = intent.getStringExtra("stdSubject")
@@ -122,9 +105,10 @@ class StudentEmployeeDetailsActivity : AppCompatActivity(){
                 etStdMarks.text.toString()
             )
 
+            //Update success Toast msg
             Toast.makeText(applicationContext, "Student Data Updated", Toast.LENGTH_LONG).show()
 
-            //we are setting updated new data to our text views
+            //setting updated new data to our text views
             tvStdName.text = etStdName.text.toString()
             tvStdSubject.text = etStdSubject.text.toString()
             tvStdMarks.text = etStdMarks.text.toString()
@@ -141,7 +125,8 @@ class StudentEmployeeDetailsActivity : AppCompatActivity(){
         subject: String,
         marks: String
     ) {
-        val dbRef = FirebaseDatabase.getInstance().getReference("Student Results").child(id)      //get data by Emp id
+        //Get database reference by id
+        val dbRef = FirebaseDatabase.getInstance().getReference("Student Results").child(id)
         val empInfo = EmployeeModel(id, name, subject, marks)
         dbRef.setValue(empInfo)
     }

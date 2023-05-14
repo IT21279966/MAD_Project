@@ -30,7 +30,7 @@ class TeacherInfoAdapter(private val teacherList : ArrayList<Teachers>) : Recycl
         val currentUser = teacherList[position]
 
 //remember about tvTeacherName
-        holder.tvTeacherName.text = currentUser.Name
+        holder.tvTeacherName.text = currentUser.name
 // holder.tvTeacherName.text = currentUser.teacherName
     }
 

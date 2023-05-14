@@ -52,13 +52,16 @@ class PaymentFetchingActivity : AppCompatActivity() {
 
                             val intent = Intent(this@PaymentFetchingActivity, PaymentDetailsActivity::class.java)
 
-//put extras
+                            //put extras
                             intent.putExtra("PaymentId", paymentList[position].PaymentId)
                             intent.putExtra("CardNumber", paymentList[position].CardNumber)
                             intent.putExtra("CardHolderName", paymentList[position].CardHolderName)
                             intent.putExtra("ExpireMonth", paymentList[position].ExpireMonth)
                             intent.putExtra("ExpireYear", paymentList[position].ExpireYear)
                             intent.putExtra("Cvv", paymentList[position].Cvv)
+
+                            //Class Fee
+                            intent.putExtra("ClassFee", paymentList[position].ClassFee)
                             startActivity(intent)
                         }
 

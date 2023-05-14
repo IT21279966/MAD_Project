@@ -9,6 +9,8 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
 class MainActivity : AppCompatActivity() {
+
+    //Login btn variable
     private lateinit var btnLoginDashBoard: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,10 +19,9 @@ class MainActivity : AppCompatActivity() {
 
         val firebase : DatabaseReference = FirebaseDatabase.getInstance().getReference()
 
-        //btnDeleteProfile = findViewById(R.id.btnDeleteProfile)
         btnLoginDashBoard = findViewById(R.id.btnDashboardLogin)
 
-
+        //Change to Login activities
         btnLoginDashBoard.setOnClickListener {
             val intent = Intent(this, TeacherStudentLogin::class.java)
             startActivity(intent)

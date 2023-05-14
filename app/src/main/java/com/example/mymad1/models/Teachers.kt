@@ -1,10 +1,10 @@
 package com.example.mymad1.models
 
 data class Teachers(
-    var Name : String? = null,
-    var Email : String? = null,
-    var Phone : String? = null,
-    var Subject : String? = null,
-    var Fee : String? = null,
+    var name : String? = null,
+    var email : String? = null,
+    var phone : String? = null,
+    var subject : String? = null,
+    var fee : String? = null,
     var uid : String? = null,
 )

@@ -23,6 +23,7 @@ import com.google.firebase.ktx.Firebase
 
 class CheckTeacherCode: AppCompatActivity() {
 
+    //Declare btn variables
     private lateinit var btnCodeConfirm: Button
     private lateinit var btnCodeExit: Button
 
@@ -32,25 +33,30 @@ class CheckTeacherCode: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.teacher_confirmation_code)
 
+        //Assign btn Ids for variables
         btnCodeConfirm = findViewById(R.id.btn_code_confirm)
         btnCodeExit = findViewById(R.id.btn_code_confirm_exit)
 
+        //Get TecherCode Reference from DB
         val codeRef = FirebaseDatabase.getInstance().reference.child("teachercode")
         val enterCode = findViewById<EditText>(R.id.enterCode)
 
+
+        //btn on clicklistner to do the job and change activity
         btnCodeConfirm.setOnClickListener {
             val typeCode = enterCode.text.toString()
 
             codeRef.addValueEventListener(object: ValueEventListener{
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    for(snapshot in snapshot.children){
+                    for(snapshot in snapshot.children){                            //Get reference snapshot of code
                         val dbValue = snapshot.getValue(String::class.java)
                         if(dbValue == typeCode){
+                            //If code is correct then change activity
                             val intent = Intent(this@CheckTeacherCode, TeacherSignInActivity::class.java)
                             startActivity(intent)
 
                             return
-                        }else{
+                        }else{          //if code invalid display error toast msg
                             Toast.makeText(this@CheckTeacherCode, "Invalid Teacher Code. try again!", Toast.LENGTH_SHORT).show()
                         }
                     }
@@ -62,78 +68,14 @@ class CheckTeacherCode: AppCompatActivity() {
             })
         }
 
+        //exit btn action
         btnCodeExit.setOnClickListener{
             val intent = Intent(this, TeacherStudentLogin::class.java)
             startActivity(intent)
         }
     }}
 
-///////////////////////////////////////////////////////////////////
-//class CheckTeacherCode: AppCompatActivity() {
-//
-//    private lateinit var btnCodeConfirm: Button
-//
-//    private lateinit var enterCode :EditText
-//
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        setContentView(R.layout.teacher_confirmation_code)
-//
-//
-//        //val userId = FirebaseAuth.getInstance()
-//        //val userRef = FirebaseDatabase.getInstance().getReference("teachercode/code")
-//
-//        val codeRef = FirebaseDatabase.getInstance().getReference("teachercode")
-//        //val editCode : EditText = findViewById(R.id.enterCode)
-//
-//
-//
-//        btnCodeConfirm = findViewById(R.id.btn_code_confirm)
-//
-//        enterCode = findViewById<EditText>(R.id.enterCode)
-//        //enterCode.toString()
-//        val typeCode = enterCode.text.toString()
-//
-//        btnCodeConfirm.setOnClickListener {
-//            val intent = Intent(this, TeacherSignUpActivity::class.java)
-//            startActivity(intent)
-/////////////////////////////////////////////////////////////////////////////////////////////////////////
-//            val code = enterCode.text.toString().trim()
-//            val isCode = codeRef.orderByChild("code").equalTo(code)
 
-//           isCode.addListenerForSingleValueEvent(object : ValueEventListener{
-//               override fun onDataChange(snapshot: DataSnapshot) {
-//                    if(codeRef.toString() == typeCode){
-//                            val intent = Intent(this@CheckTeacherCode, TeacherSignUpActivity::class.java)
-//                            startActivity(intent)
-//
-//                    } else{
-//                        Toast.makeText(this@CheckTeacherCode,"Incorrect Code. Try again!",Toast.LENGTH_SHORT).show()
-//                    }
-//                }
-//
-//                override fun onCancelled(error: DatabaseError) {
-//                    Toast.makeText(this@CheckTeacherCode, "Error ${error.message}", Toast.LENGTH_LONG).show()
-//                }
-//            })
-
-
-
-
-
-//            val intent = Intent(this, TeacherSignUpActivity::class.java)
-//            startActivity(intent)
-//            if(codeRef == enterCode){
-//                val intent = Intent(this, SignUpActivity::class.java)
-//                startActivity(intent)
-//            }else{
-//                Toast.makeText(this,"Incorrect Code. Try again!",Toast.LENGTH_SHORT).show()
-//                val intent = Intent(this, CheckTeacherCode::class.java)
-//                startActivity(intent)
-//            }
-
-//        }
-//    }}
 
 
 

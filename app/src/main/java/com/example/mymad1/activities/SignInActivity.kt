@@ -19,18 +19,19 @@ import com.google.firebase.database.FirebaseDatabase
 
 class SignInActivity : AppCompatActivity() {
 
-
+    //Variable to get Auth reference
     private lateinit var auth : FirebaseAuth
-    private val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
+    private val emailPattern = "[a-z0-9._-]+@[a-z]+\\.+[a-z]+"       //Assign Email validation pattern
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_in)
 
+        //Get auth instance
         auth = FirebaseAuth.getInstance()
 
-
+        //Assign Edit txt Ids to variables
         val signInEmail : EditText = findViewById(R.id.signInStdEmail)
         val signInPassword : EditText = findViewById(R.id.signInStdPassword)
         val signInPasswordLayout : TextInputLayout = findViewById(R.id.siginInStdPasswordLayout)
@@ -39,6 +40,7 @@ class SignInActivity : AppCompatActivity() {
 
         val signUpText : TextView = findViewById(R.id.signUpTextStd)
 
+        //Change to SignUp activity
         signUpText.setOnClickListener{
             val intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)
@@ -51,6 +53,7 @@ class SignInActivity : AppCompatActivity() {
             val stdEmail = signInEmail.text.toString()
             val stdPassword = signInPassword.text.toString()
 
+            //Check whether input fields are empty or not
             if(stdEmail.isEmpty() || stdPassword.isEmpty()){
                 if(stdEmail.isEmpty()){
                     signInEmail.error = "Enter email address"
@@ -63,6 +66,7 @@ class SignInActivity : AppCompatActivity() {
                 signInProgressbar.visibility = View.GONE
                 Toast.makeText(this, "Enter valid details", Toast.LENGTH_SHORT).show()
 
+                //Check Email validation
             }else if(!stdEmail.matches(emailPattern.toRegex())){
                 signInProgressbar.visibility = View.GONE
                 signInEmail.error = "Enter valid email address"

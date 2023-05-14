@@ -55,8 +55,8 @@
         android:layout_marginBottom="10dp"
         android:ems="10"
         android:fontFamily="sans-serif"
+        android:hint="Name"
         android:inputType="textPersonName"
-        android:text="Name"
         android:textSize="24sp" />
 
     <TextView
@@ -68,21 +68,13 @@
         android:textSize="24sp"
         android:textStyle="bold" />
 
-    <EditText
+    <Spinner
         android:id="@+id/addSubject"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:ems="10"
-        android:fontFamily="sans-serif"
-        android:inputType="textPersonName"
-        android:text="Subject"
-        android:textSize="24sp" />
-
-    <!--    <Spinner-->
-    <!--        android:id="@+id/addSubject"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content" />-->
+        android:layout_height="40dp"
+        android:scrollbarSize="4dp"
+        android:textSize="24sp"
+        android:tooltipText="24dp" />
 
     <TextView
         android:id="@+id/date"
@@ -100,8 +92,8 @@
         android:layout_marginBottom="10dp"
         android:ems="10"
         android:fontFamily="sans-serif"
+        android:hint="Date"
         android:inputType="textPersonName"
-        android:text="Date"
         android:textSize="24sp" />
 
     <TextView
@@ -109,7 +101,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif"
-        android:text="Time:"
+        android:text="Start Time:"
         android:textSize="24sp"
         android:textStyle="bold" />
 
@@ -120,8 +112,28 @@
         android:layout_marginBottom="10dp"
         android:ems="10"
         android:fontFamily="sans-serif"
+        android:hint="Start Time"
         android:inputType="textPersonName"
-        android:text="Time"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/Endtime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:text="End Time:"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/addEndTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:ems="10"
+        android:fontFamily="sans-serif"
+        android:hint="End Time"
+        android:inputType="textPersonName"
         android:textSize="24sp" />
 
     <TextView
@@ -141,8 +153,8 @@
         android:backgroundTint="#082F58"
         android:ems="10"
         android:fontFamily="sans-serif"
+        android:hint="Link"
         android:inputType="textPersonName"
-        android:text="Link"
         android:textSize="24sp" />
 
     <Button

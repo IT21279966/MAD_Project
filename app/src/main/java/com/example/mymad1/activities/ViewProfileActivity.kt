@@ -14,22 +14,23 @@ import com.google.firebase.database.*
 
 class ViewProfileActivity: AppCompatActivity() {
 
-
+    //Assign text views to variables
     private lateinit var viewProfileName: TextView
     private lateinit var viewProfileEmail: TextView
     private lateinit var viewProfileMobileNumber: TextView
     private  lateinit var viewProfileHeaderEmail : TextView
     private  lateinit var viewProfileHeaderName : TextView
 
+    //Assign button to variables
     private lateinit var btnUpdateProfile : Button
     private lateinit var btnDeleteProfile : Button
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.view_profile)
 
+        //set field values for variables
         viewProfileName = findViewById(R.id.viewProfileName)
         viewProfileEmail = findViewById(R.id.viewProfileEmail)
         viewProfileMobileNumber = findViewById(R.id.viewProfileMobileNumber)
@@ -45,6 +46,7 @@ class ViewProfileActivity: AppCompatActivity() {
         val timetableIcon = findViewById<ImageView>(R.id.ivTimetable)
         val resultsIcon = findViewById<ImageView>(R.id.ivResults)
 
+        //Call student data
         getStudentData()
 
 
@@ -64,30 +66,28 @@ class ViewProfileActivity: AppCompatActivity() {
             startActivity(intent)
         }
 
-
+        //When update button clicked
         btnUpdateProfile.setOnClickListener {
-//            val intent = Intent(this, UpdateProfileActivity::class.java)  //change activity
-//            startActivity(intent)
 
+            //Get instance by user id
             val userId = FirebaseAuth.getInstance().currentUser?.uid
             val userRef = FirebaseDatabase.getInstance().getReference("students/$userId")
 
-//            openUpdateDialog(
-//                intent.getStringExtra("userId").toString()
-//            )
-
             userRef.addValueEventListener(object : ValueEventListener{
                 override fun onDataChange(snapshot: DataSnapshot) {
+
+                    //Pass Updating data to database students
                     val student = snapshot.getValue(Students::class.java)
                     openUpdateDialog(student?.uid.toString(), student?.stdName.toString(), student?.stdEmail.toString(), student?.stdPhone.toString())
                 }
 
                 override fun onCancelled(error: DatabaseError) {
-//                    Log.w(TAG, "Failed to read user data.", error.toException())
+                    Log.w(TAG, "Failed to read user data.", error.toException())
                 }
             })
         }
 
+        //Delete btn action
         btnDeleteProfile.setOnClickListener {
             val intent = Intent(this, DeleteProfileActivity::class.java)  //change activity
             startActivity(intent)
@@ -96,12 +96,17 @@ class ViewProfileActivity: AppCompatActivity() {
 
     }
 
+    //Function to get student data
     private fun getStudentData(){
+
+        //Get instance from database
         val userId = FirebaseAuth.getInstance().currentUser?.uid
         val userRef = FirebaseDatabase.getInstance().getReference("students/$userId")
 
         userRef.addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
+
+                //Get data from database to the relevant
                 val student = snapshot.getValue(Students::class.java)
                 viewProfileName.text = student?.stdName
                 viewProfileEmail.text = student?.stdEmail
@@ -117,6 +122,7 @@ class ViewProfileActivity: AppCompatActivity() {
         })
     }
 
+    //Open update dialog pop up
     private fun openUpdateDialog(
         userId: String,
         profName: String,
@@ -129,11 +135,10 @@ class ViewProfileActivity: AppCompatActivity() {
 
         mDialog.setView(mDialogView)
 
+        //Assign Edit text fields to variables
         val etProfName = mDialogView.findViewById<EditText>(R.id.editStudentName)
         val etProfEmail = mDialogView.findViewById<EditText>(R.id.editStudentEmail)
         val etProfPhoneNo = mDialogView.findViewById<EditText>(R.id.editStudentMobileNumber)
-
-
 
         etProfName.setText(profName)
         etProfEmail.setText(profEmail)
@@ -154,9 +159,7 @@ class ViewProfileActivity: AppCompatActivity() {
                 etProfPhoneNo.text.toString(),
             )
 
-
-
-            //set updated data to textviews
+            //set updated data to text
             viewProfileName.text = etProfName.text.toString()
             viewProfileEmail.text = etProfEmail.text.toString()
             viewProfileMobileNumber.text = etProfPhoneNo.text.toString()
@@ -174,13 +177,16 @@ class ViewProfileActivity: AppCompatActivity() {
         email: String,
         phoneNo: String,
     ){
+        //get instance from students database collection by id
         val dbRef = FirebaseDatabase.getInstance().getReference("students").child(userId)
         val profInfo = Students(name, email, phoneNo, userId)
         dbRef.setValue(profInfo)
 
+        //Identify current user
         val user = FirebaseAuth.getInstance().currentUser
         user?.updateEmail(email)?.addOnCompleteListener { task->
             if(task.isSuccessful){
+                //Display toast msg if success
                 Toast.makeText(applicationContext, "Profile Updated", Toast.LENGTH_LONG).show()
             }
             else{

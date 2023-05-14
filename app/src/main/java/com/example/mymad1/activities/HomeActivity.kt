@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.drawerlayout.widget.DrawerLayout
 import com.example.mymad1.activities.TimetableSetup
 import com.example.mymad1.activities.TeacherDetailsActivity
 import com.example.mymad1.R
@@ -15,15 +16,24 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
-class HomeActivity : AppCompatActivity() {
+class HomeActivity : AppCompatActivity(){
+
+
     private lateinit var btnHomeTimetable: Button
     private lateinit var mathsBtn: Button
     private lateinit var bioBtn: Button
     private lateinit var chemBtn: Button
     private lateinit var phyBtn: Button
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
+
+
+        ///////////////////////////////////////////////////////////////////////Nav Bar//////////////////////////////////////////////////////////////
+
+
+        ///////////////////////////////////////////////////////////////////////Nav Bar//////////////////////////////////////////////////////////////
 
         btnHomeTimetable = findViewById(R.id.btnTimetable)
         mathsBtn = findViewById(R.id.btnMaths)
@@ -33,27 +43,29 @@ class HomeActivity : AppCompatActivity() {
 
         val userIcon = findViewById<ImageView>(R.id.userIcon)
 
-//user profile navigation
+        //user profile navigation
         userIcon.setOnClickListener{
-//get current user (student/ teacher)
+            //get current user (student/ teacher)
             val currentUser = FirebaseAuth.getInstance().currentUser
             val dbTeacherUser = FirebaseDatabase.getInstance().getReference("teachers")
 
             dbTeacherUser
-                .orderByChild("teacherId")
+                .orderByChild("uid")
                 .equalTo(currentUser?.uid)
                 .addListenerForSingleValueEvent(object : ValueEventListener {
+
                     override fun onDataChange(snapshot: DataSnapshot) {
                         if (snapshot.exists()) {
-//user is a teacher
+                            //user is a teacher
                             val intent = Intent(this@HomeActivity, TeacherViewProfileActivity::class.java)
                             startActivity(intent)
                         } else {
-//user is a student
+                            //user is a student
                             val intent = Intent(this@HomeActivity, ViewProfileActivity::class.java)
                             startActivity(intent)
                         }
                     }
+
                     override fun onCancelled(error: DatabaseError) {
                         Toast.makeText(this@HomeActivity, "Error ${error.message}", Toast.LENGTH_LONG).show()
                     }
@@ -72,12 +84,12 @@ class HomeActivity : AppCompatActivity() {
                 .addListenerForSingleValueEvent(object : ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
                         if (snapshot.exists()) {
-//user is a teacher
+                            //user is a teacher
                             val intent = Intent(this@HomeActivity, TimetableSetup::class.java)
                             startActivity(intent)
                         } else {
-//user is a student
-                            val intent = Intent(this@HomeActivity, TeacherDetailsActivity::class.java)
+                            //user is a student
+                            val intent = Intent(this@HomeActivity, SelectSubjectActivity::class.java)
                             startActivity(intent)
                         }
                     }

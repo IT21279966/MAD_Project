@@ -16,6 +16,8 @@ class EnterPaymentGatewayActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_enter_payment_gateway)
 
+        //Get Fee
+        val ClassFee = intent.getStringExtra("ClassFee")
 //        btnFetchingPayment = findViewById(R.id.btnFetchPayment)
         btnInsertionPayment = findViewById(R.id.btnInsertPayment)
 
@@ -26,6 +28,7 @@ class EnterPaymentGatewayActivity : AppCompatActivity() {
 
         btnInsertionPayment.setOnClickListener {
             val intent = Intent(this, PaymentInsertionActivity::class.java)
+            intent.putExtra("ClassFee", ClassFee)
             startActivity(intent)
         }
     }

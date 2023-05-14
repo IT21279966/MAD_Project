@@ -14,6 +14,9 @@
     <color name="startblue">#09c6df</color>
     <color name="endblue">#0bcce6</color>
 
+    //for side bar
+    <color name="lightBlue">#84C7E3</color>
+
     //Edit Profile
     <color name="blue1">#9BD7F3</color>
 

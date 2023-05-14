@@ -16,7 +16,8 @@
         android:fontFamily="sans-serif"
         android:text="@string/labelTimetable"
         android:textAlignment="center"
-        android:textSize="40sp" />
+        android:textSize="40sp"
+        android:textStyle="bold" />
 
     <LinearLayout
         android:id="@+id/linearLayout01"

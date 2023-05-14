@@ -26,7 +26,7 @@ class TimetableAdapter(private val timetableList : ArrayList<TimetableModel>) : 
 
     override fun onBindViewHolder(holder: TimetableAdapter.ViewHolder, position: Int) {
         val currentTimetable = timetableList[position]
-        holder.tvTimetableTime.text = currentTimetable.timetableTime
+        holder.tvTimetableTime.text = currentTimetable.teacherName
     }
 
     override fun getItemCount(): Int {

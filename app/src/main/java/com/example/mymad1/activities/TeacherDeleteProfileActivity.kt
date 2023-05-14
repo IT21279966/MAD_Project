@@ -11,31 +11,29 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
-class DeleteProfileActivity:AppCompatActivity() {
+class TeacherDeleteProfileActivity:AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.view_profile)
+        setContentView(R.layout.teacher_view_profile)
 
-        //Call show delete alert method
         showDeleteAlert()
 
 
     }
 
-    //Function to display pop up message before delete the account
+
     private fun showDeleteAlert(){
         val builder = AlertDialog.Builder(this)
         builder.setMessage("Are you sure you want to delete profile?")
             .setTitle("Delete Profile")
-            .setPositiveButton("Yes") { dialog, which ->             //If press Yes
+            .setPositiveButton("Yes") { dialog, which ->
 
-                //Get database reference
                 val userId = FirebaseAuth.getInstance().currentUser?.uid
-                val userRef = FirebaseDatabase.getInstance().getReference("students/$userId")
+                val userRef = FirebaseDatabase.getInstance().getReference("teachers/$userId")
 
-                // Use the removeValue() method to delete the node from the realtime database
+                // Use the removeValue() method to delete the node from the database
                 userRef.removeValue()
                     .addOnSuccessListener {
                         // Display a success message to the user
@@ -52,21 +50,20 @@ class DeleteProfileActivity:AppCompatActivity() {
                         Toast.makeText(this, "Profile deleted successfully", Toast.LENGTH_SHORT).show()
                     }
                     ?.addOnFailureListener {
-                        Toast.makeText(this, "Error deleting Profile", Toast.LENGTH_SHORT)
+                        Toast.makeText(this, "Error deleting Profile", Toast.LENGTH_SHORT).show()
                     }
 
-                val intent = Intent(this, SignUpActivity::class.java)  //Change activity
+                val intent = Intent(this, TeacherSignUpActivity::class.java)
                 startActivity(intent)
 
 
             }
             .setNegativeButton("No") { dialog, which ->
-                // Do nothing if select No
+                // Do nothing
 
                 dialog.cancel()
             }
 
-        //Show dialog
         val dialog = builder.create()
         dialog.show()
     }

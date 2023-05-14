@@ -31,19 +31,21 @@ import java.util.*
 
 class SignUpActivity : AppCompatActivity() {
 
+    //DB reference for variables
     private lateinit var auth : FirebaseAuth
     private lateinit var database: FirebaseDatabase
-   //private val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
-    private val emailPattern = "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z]+\$"
+
+    //Email validation
+    private val emailPattern = "[a-z0-9._-]+@[a-z]+\\.+[a-z]+"
+    //Mobile number pattern for validation
     private val phonePattern = "^\\d{10}$"
-
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
 
+        //Get instances from FirebaseAuth and Realtime database
         auth = FirebaseAuth.getInstance()
         database = FirebaseDatabase.getInstance()
 
@@ -61,6 +63,7 @@ class SignUpActivity : AppCompatActivity() {
 
         val signInText : TextView = findViewById(R.id.signInTextStd)
 
+        //Change activity when click text
         signInText.setOnClickListener{
             val intent = Intent(this, SignInActivity::class.java)
             startActivity(intent)
@@ -77,6 +80,7 @@ class SignUpActivity : AppCompatActivity() {
             siginUpStdPasswordLayout.isPasswordVisibilityToggleEnabled = true
             siginUpStdConfiPasswordLayout.isPasswordVisibilityToggleEnabled = true
 
+            //Check whether input fields are empty or not
             if(stdName.isEmpty() || stdEmail.isEmpty() || stdPhone.isEmpty() || stdPassword.isEmpty() || stdConfirPassword.isEmpty()){
 
                 if(stdName.isEmpty()){
@@ -104,16 +108,19 @@ class SignUpActivity : AppCompatActivity() {
                 Toast.makeText(this, "Enter valid details", Toast.LENGTH_SHORT).show()
                 signUpStdProgressbar.visibility = View.GONE
 
-            }else if(!stdEmail.matches(emailPattern.toRegex(RegexOption.IGNORE_CASE))){
+                //Check email valid or not
+            }else if(!stdEmail.matches(emailPattern.toRegex())){
                 signUpStdProgressbar.visibility = View.GONE
                 signUpStdEmail.error = "Enter valid email address"
                 Toast.makeText(this, "Enter valid email address", Toast.LENGTH_SHORT).show()
 
+                //Check mobile number valid or not
             }else if(stdPhone.length != 10 || !stdPhone.matches(phonePattern.toRegex())){
                 signUpStdProgressbar.visibility = View.GONE
                 signUpStdPhone.error = "Enter valid mobile number"
                 Toast.makeText(this, "Enter valid mobile number", Toast.LENGTH_SHORT).show()
 
+                //Make min password length as 6
             }else if(stdPassword.length<6){
                 siginUpStdPasswordLayout.isPasswordVisibilityToggleEnabled = false
                 signUpStdProgressbar.visibility = View.GONE
@@ -129,6 +136,8 @@ class SignUpActivity : AppCompatActivity() {
             }else{
                 auth.createUserWithEmailAndPassword(stdEmail, stdPassword).addOnCompleteListener{
                     if(it.isSuccessful){
+
+                        //Create database collection students if details are correct
                         val databaseRef = database.reference.child("students").child(auth.currentUser!!.uid)
                         val students : Students = Students(stdName, stdEmail,stdPhone, auth.currentUser!!.uid)
 

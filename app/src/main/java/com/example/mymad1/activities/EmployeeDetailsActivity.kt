@@ -28,10 +28,11 @@ class EmployeeDetailsActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_employee_details)
 
+        //Call methods
         initView()
         setValuesToViews()
 
-        //Update Btn
+        //Update Btn open dialog
         btnUpdate.setOnClickListener {
             openUpdateDialog(
                 intent.getStringExtra("stdId").toString(),
@@ -40,7 +41,7 @@ class EmployeeDetailsActivity : AppCompatActivity(){
         }
 
 
-        //Delete btn
+        //Delete btn to delete record
         btnDelete.setOnClickListener{
             deleteRecord(
                 intent.getStringExtra("stdId").toString()    //get unique ID
@@ -49,6 +50,7 @@ class EmployeeDetailsActivity : AppCompatActivity(){
 
     }
 
+    //Method to delete
     private fun deleteRecord(id: String) {
         val dbRef = FirebaseDatabase.getInstance().getReference("Student Results").child(id)
 

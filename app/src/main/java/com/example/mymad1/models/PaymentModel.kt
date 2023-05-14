@@ -6,5 +6,6 @@ data class PaymentModel(
     var CardHolderName:String? = null,
     var ExpireMonth:String? = null,
     var ExpireYear:String? = null,
-    var Cvv:String? = null
+    var Cvv:String? = null,
+    var ClassFee:String? = null
 )

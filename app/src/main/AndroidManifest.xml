@@ -35,7 +35,8 @@
 
         <activity android:name=".activities.TeacherSignInActivity"/>
         <activity android:name=".activities.TeacherSignUpActivity"/>
-
+        <activity android:name=".activities.TeacherViewProfileActivity"/>
+        <activity android:name=".activities.TeacherDeleteProfileActivity"/>
         <activity
             android:name=".activities.SignUpActivity"
             android:exported="false" />
@@ -51,6 +52,8 @@
         <activity android:name=".activities.FetchingTeacherInfo"/>
         <activity android:name=".activities.TeacherDetailsActivity"/>
         <activity android:name=".activities.HomeActivity"/>
+        <activity android:name=".activities.FetchingTimetableTeacher"/>
+        <activity android:name=".activities.SelectSubjectActivity"/>
 
         <!-- Shashika-->
         <activity android:name=".activities.InsertionActivity"/>

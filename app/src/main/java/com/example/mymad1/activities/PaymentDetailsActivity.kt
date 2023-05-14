@@ -21,6 +21,8 @@ class PaymentDetailsActivity : AppCompatActivity() {
     private lateinit var tvExpireMonth: TextView
     private lateinit var tvExpireYear: TextView
     private lateinit var tvCvv: TextView
+    private lateinit var ClassFee: TextView
+
     private lateinit var btnUpdatePayment: Button
     private lateinit var btnDeletePayment: Button
     private lateinit var btnPaymentDone: Button
@@ -66,6 +68,7 @@ class PaymentDetailsActivity : AppCompatActivity() {
         tvExpireMonth = findViewById(R.id.tvExpireMonth)
         tvExpireYear = findViewById(R.id.tvExpireYear)
         tvCvv = findViewById(R.id.tvCvv)
+        ClassFee = findViewById(R.id.tvClassFee)
 
         btnUpdatePayment = findViewById(R.id.btnUpdatePayment)
         btnDeletePayment = findViewById(R.id.btnDeletePayment)
@@ -78,6 +81,7 @@ class PaymentDetailsActivity : AppCompatActivity() {
         tvExpireMonth.text = intent.getStringExtra("ExpireMonth")
         tvExpireYear.text = intent.getStringExtra("ExpireYear")
         tvCvv.text = intent.getStringExtra("Cvv")
+        ClassFee.text = intent.getStringExtra("ClassFee")
 
     }
 
